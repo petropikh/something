@@ -1,3 +1,8 @@
 #!/usr/bin/python3
 
-print('hello people')
+import urllib.request
+
+site = urllib.request.urlopen("http://google.com").read()
+print(site)
+
+print('\nhello people')
