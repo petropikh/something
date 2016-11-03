@@ -1,13 +1,20 @@
 #!/usr/bin/python3
 
-import urllib.request
-
 from bs4 import BeautifulSoup
+import requests
+import re
 
-site = urllib.request.urlopen("http://google.com").read()
+URL = 'http://volia.com'
+
+site = requests.get(URL).text
 
 soup = BeautifulSoup(site, "lxml")
 links = soup.find_all('a')
 
-for x in links:
-    print(x)
+for a in soup.find_all('a', href=True):
+#    print(a['href'])
+
+    if re.search('^(http|https):\/\/', a['href']):
+        print(a['href'])
+    else:
+        print(URL + a['href'])
