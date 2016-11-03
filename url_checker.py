@@ -5,16 +5,22 @@ import requests
 import re
 
 URL = 'http://volia.com'
+list_links = []
 
-site = requests.get(URL).text
+def urls(URL):
+    site = requests.get(URL).text
+    soup = BeautifulSoup(site, "lxml")
+    links = soup.find_all('a')
+    for a in soup.find_all('a', href=True):
+        if re.search('^(http|https):\/\/', a['href']):
+            list_links.append(a['href'])
+        else:
+            list_links.append(URL + a['href'])
 
-soup = BeautifulSoup(site, "lxml")
-links = soup.find_all('a')
+urls(URL)
 
-for a in soup.find_all('a', href=True):
-#    print(a['href'])
+for x in list_links:
+    print("For link: ", x, "status code is: ", requests.get(x).status_code)
 
-    if re.search('^(http|https):\/\/', a['href']):
-        print(a['href'])
-    else:
-        print(URL + a['href'])
+#r = requests.get('http://google.com')
+#print(r.status_code)
