@@ -3,6 +3,9 @@
 from bs4 import BeautifulSoup
 import requests
 import re
+from datetime import datetime
+
+startTime = datetime.now()
 
 URL = 'http://volia.com'
 list_links = []
@@ -31,3 +34,5 @@ for x in list_links:
 
 #r = requests.get('http://google.com')
 #print(r.status_code)
+
+print(datetime.now() - startTime)
