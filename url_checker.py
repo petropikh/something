@@ -2,7 +2,12 @@
 
 import urllib.request
 
-site = urllib.request.urlopen("http://google.com").read()
-print(site)
+from bs4 import BeautifulSoup
 
-print('\nhello people')
+site = urllib.request.urlopen("http://google.com").read()
+
+soup = BeautifulSoup(site, "lxml")
+links = soup.find_all('a')
+
+for x in links:
+    print(x)
