@@ -21,7 +21,6 @@ def test(URL, number):
         else:
             urls[number].append(URL + a['href'])
 #            print(URL + a['href'])
-
 #test(website, number=1)
 
 def runer(counts):
@@ -30,16 +29,24 @@ def runer(counts):
         c = 2
         while c <= counts:
             for x in urls[c - 1]:
-                print("getting links from: ", x, "using dictionary number: ", c -1)
+                print("getting links from: ", x, "using dictionary number: ", c - 1)
                 test(website, c)
             c += 1
-runer(counts=3)
+runer(counts=2)
 
-print("FIRST URLS")
-print('URLS from 1: ', urls[1])
-print("Second URLS")
-print('URLS from 2: ', urls[2])
-print("Third URLS")
-print('URLS from 3: ', urls[3])
+#print("FIRST URLS")
+#print('URLS from 1: ', urls[1])
+#print("Second URLS")
+#print('URLS from 2: ', urls[2])
+#print("Third URLS")
+#print('URLS from 3: ', urls[3])
+
+for xx in urls[1]:
+    print("For link: ", xx, "from dictionary 1, status code is: ", requests.get(xx).status_code)
+for xy in urls[2]:
+    print("For link: ", xy, "from dictionary 2, status code is: ", requests.get(xy).status_code)
+for xz in urls[3]:
+    print("For link: ", xz, "from dictionary 3, status code is: ", requests.get(xz).status_code)
+
 
 print(datetime.now() - startTime)
