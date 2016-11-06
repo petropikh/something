@@ -32,7 +32,7 @@ def runer(counts):
                 print("getting links from: ", x, "using dictionary number: ", c - 1)
                 test(website, c)
             c += 1
-runer(counts=2)
+runer(counts=3)
 
 #print("FIRST URLS")
 #print('URLS from 1: ', urls[1])
